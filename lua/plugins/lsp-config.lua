@@ -28,7 +28,7 @@ return {
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-      vim.keymap.set("n", "<C-Space", vim.lsp.buf.signature_help, { desc="Signature hint"})
+      vim.keymap.set("n", "<C-Space>", vim.lsp.buf.signature_help, { desc="Signature hint"})
 		end,
 	},
 }
