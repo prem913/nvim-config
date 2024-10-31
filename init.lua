@@ -27,6 +27,8 @@ end
 
 vim.api.nvim_create_user_command("Was",save_and_build_java_project,{})
 
+local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
+vim.cmd.source(vimrc)
 
 require("vim-options")
 require("lazy").setup("plugins")
