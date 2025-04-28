@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "gopls", "jdtls" ,"pyright"},
+        ensure_installed = { "lua_ls", "gopls", "jdtls", "pyright" },
       })
     end,
   },
@@ -22,9 +22,25 @@ return {
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
-      lspconfig.gopls.setup({})
-      lspconfig.jdtls.setup({})
-      lspconfig.pyright.setup({})
+      -- lspconfig.gopls.setup({})
+      -- lspconfig.jdtls.setup({})
+      -- lspconfig.pyright.setup({})
+      -- lspconfig.html.setup({})
+      local servers = { "tsserver", "tailwindcss", "eslint", "cssls", "gopls", "jdtls", "pyright" }
+
+      for _, lsp in ipairs(servers) do
+        lspconfig[lsp].setup {
+          capabilities = capabilities
+        }
+      end
+
+      --Enable (broadcasting) snippet capability for completion
+      local htmlCapabilities = vim.lsp.protocol.make_client_capabilities()
+      htmlCapabilities.textDocument.completion.completionItem.snippetSupport = true
+
+      lspconfig.html.setup {
+        capabilities = capabilities,
+      }
       -- require("typescript-tools").setup({})
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
